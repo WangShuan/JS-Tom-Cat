@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>湯姆貓</title>
+    <script src="./fn.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 320px;
+            height: 512px;
+            border: 2px solid red;
+            margin: 100px auto;
+            background-image: url('./img/angry/angry_00.jpg');
+            background-size: cover;
+            position: relative;
+        }
+
+        #bt1 {
+            bottom: 0;
+        }
+
+        #bt2 {
+            bottom: 60px;
+        }
+
+        #bt3 {
+            bottom: 120px;
+        }
+
+        #bt4 {
+            right: 0;
+            bottom: 0;
+        }
+
+        #bt5 {
+            right: 0;
+            bottom: 60px;
+        }
+
+        #bt6 {
+            bottom: 120px;
+            right: 0;
+        }
+
+        .bt {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+        }
+
+        .bt:hover {
+            border: 2px solid red;
+            border-radius: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <img src="./img/Buttons/cymbal.png" class="bt" id="bt1">
+        <img src="./img/Buttons/drink.png" class="bt" id="bt2">
+        <img src="./img/Buttons/eat.png" class="bt" id="bt3">
+        <img src="./img/Buttons/fart.png" class="bt" id="bt4">
+        <img src="./img/Buttons/pie.png" class="bt" id="bt5">
+        <img src="./img/Buttons/scratch.png" class="bt" id="bt6">
+    </div>
+
+    <script>
+            var i = 0;
+            var oBox = document.getElementById('box')
+            var aBt = document.getElementsByClassName('bt');
+            var timer = null;
+            var Names=["cymbal","drink","eat","fart","pie","scratch"];
+            var arr = [12,80,39,27,23,55];
+            
+            var go=function(num){
+                if (timer == null) {
+                    timer = setInterval(function () {
+                        i++
+                        if (i > arr[num]) {
+                            i = 0
+                            stop()
+                        }
+                        addZero()
+                        oBox.style.backgroundImage = "url('./img/"+Names[num]+"/"+Names[num]+"_" + i + ".jpg')"
+                    }, 80)
+                }
+            };
+
+            var stop = function(){
+                clearInterval(timer)
+                timer=null
+            };
+            
+            var addZero=function(){
+                if(i<10){
+                    i='0'+i
+                }
+            }
+
+            for(j=0;j<aBt.length;j++){
+                aBt[j].index=j
+                aBt[j].onclick=function(){
+                    stop()
+                    go(this.index)
+                }
+            }
+
+</script>
+
+</body>
+
+</html>
